@@ -1,6 +1,6 @@
 ## Replication Package - Executing Prophet Tool
 
-In the `/replication` directory, you will find the zip file `prophet_eeg_study.zip` containing:
+In the `/prophet` directory, you will find the zip file `prophet_eeg_study.zip` containing:
 
 * **Tasks**: All stimuli presented to participants (`trialX_taskY.png` files, where X is the trial number (1–3) and Y is the task number (1–4)).  
 * **Baseline images**: Reference images used for baseline conditions (`relax.png` and `+.png`).  
