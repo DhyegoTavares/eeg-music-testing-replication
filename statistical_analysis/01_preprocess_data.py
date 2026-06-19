@@ -63,6 +63,13 @@ def process_file(filepath: str, group: str, wave: str) -> pd.DataFrame:
     df = pd.read_csv(filepath, header=1, sep=";")
     df = df.drop(columns=[c for c in COLS_TO_DROP if c in df.columns])
 
+    df["Frontal"] = (
+        df["Frontal"]
+        .astype(str)
+        .str.replace(r'(-?\d+\.\d{3})\.(\d+)', r'\1\2', regex=True)
+    )
+    df["Frontal"] = pd.to_numeric(df["Frontal"], errors="coerce")
+
     df[["Participant", "Condition"]] = (
         df["Name"]
         .str.replace(".set", "", regex=False)

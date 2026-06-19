@@ -19,7 +19,7 @@ from scipy import stats
 DATA_PATH = os.path.join("data", "EEG_ALL_GROUPS.csv")
 RESULTS_PATH = os.path.join("results", "normality_results.csv")
 
-TASKS = ["BL01", "BL02", "BL03", "BL04", "IBOE"]
+TASKS = ["BL01", "BL02", "BL03", "BL04"]
 ALPHA = 0.05
 
 
@@ -41,8 +41,8 @@ def main() -> None:
         print(f"\n===== Wave: {wave} =====")
 
         for task in TASKS:
-            music = df_wave[df_wave["Group"] == "Music"][task].dropna()
-            control = df_wave[df_wave["Group"] == "NoMusic"][task].dropna()
+            music = pd.to_numeric(df_wave[df_wave["Group"] == "Music"][task], errors="coerce").dropna()
+            control = pd.to_numeric(df_wave[df_wave["Group"] == "NoMusic"][task], errors="coerce").dropna()
 
             stat_m, p_m = stats.shapiro(music)
             stat_c, p_c = stats.shapiro(control)

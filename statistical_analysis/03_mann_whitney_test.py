@@ -56,7 +56,10 @@ def significance_label(p: float) -> str:
 
 
 def main() -> None:
-    df = pd.read_csv(DATA_PATH)
+    df = pd.read_csv(DATA_PATH, dtype=str)
+    for col in TASKS:
+        df[col] = df[col].str.replace(r'(-?\d+\.\d{3})\.(\d+)', r'\1\2', regex=True)
+        df[col] = pd.to_numeric(df[col], errors="coerce")
     waves = df["Wave"].unique()
     records = []
 
