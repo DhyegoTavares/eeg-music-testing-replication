@@ -59,6 +59,10 @@ The MATLAB scripts used to process the raw EEG recordings are organized as follo
 
 ### Requirements
 
+```bash
+pip install -r requirements.txt
+```
+
 * **MATLAB R2018b** or later
 * **EEGLAB v2023.1** or later [EEGLAB instalation guide](https://eeglab.org/tutorials/01_Install/Install.html) 
 
