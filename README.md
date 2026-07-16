@@ -1,8 +1,8 @@
 # EEG_MUSIC_TESTING
 ## Exploring the Impact of Music on Brain Activity during Testing: An EEG-based Investigation
 
-> **Paper:** [INSERT DOI OR URL TO ACCEPTED PAPER HERE]
-> **Raw EEG data:** https://zenodo.org/records/17457949
+> **Paper:** [Exploring the Impact of Music on Brain Activity during Testing: An EEG-based Investigation](Paper/Exploring%20the%20Impact%20of%20Music%20on%20Brain%20Activity%20during%20Testing%3A%20An%20EEG-based%20Investigation.pdf) — DOI to be assigned upon publication
+> **Raw EEG data:** https://doi.org/10.5281/zenodo.17457949
 
 This repository provides the **replication package**, **analysis scripts**, and **supplementary materials** for the paper.
 
@@ -35,7 +35,15 @@ The `/forms` directory contains all **pre-experiment forms** used in the study.
 
 ## Raw EEG Data
 
-The raw EEG Data are available at: https://zenodo.org/records/17457949
+The raw EEG Data are available at: https://doi.org/10.5281/zenodo.17457949
+
+### Storage Requirements
+
+The raw EEG recordings on Zenodo total approximately 1 GB. The processed data and scripts in this repository require less than 5 MB of storage. No special hardware is needed to run the analysis scripts.
+
+### Ethical and Legal Statements
+
+The EEG recordings were collected under an ethics protocol approved by the institutional review board. All participants provided written informed consent prior to data collection. Raw EEG recordings are not distributed in this repository to protect participant privacy; only anonymized, aggregated spectral power values are included in the statistical analysis dataset. The dataset is released under the MIT License (see `LICENSE`).
 
 ## Statistical Analysis
 
@@ -59,12 +67,21 @@ The MATLAB scripts used to process the raw EEG recordings are organized as follo
 
 ### Requirements
 
-```bash
-pip install -r requirements.txt
-```
-
 * **MATLAB R2018b** or later
-* **EEGLAB v2023.1** or later [EEGLAB instalation guide](https://eeglab.org/tutorials/01_Install/Install.html) 
+* **EEGLAB v2023.1** or later — [EEGLAB installation guide](https://eeglab.org/tutorials/01_Install/Install.html)
+
+No special hardware is required. The scripts run on any standard desktop or laptop with MATLAB and EEGLAB installed.
+
+### Installation
+
+1. Install MATLAB R2018b or later from [MathWorks](https://www.mathworks.com).
+2. Install EEGLAB by following the [official installation guide](https://eeglab.org/tutorials/01_Install/Install.html).
+3. Clone or download this repository and open MATLAB in the repository root.
+4. Verify the setup by opening EEGLAB in MATLAB:
+   ```matlab
+   eeglab
+   ```
+   If the EEGLAB GUI opens without errors, the environment is correctly configured.
 
 ### Execution Order
 

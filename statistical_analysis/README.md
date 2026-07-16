@@ -1,8 +1,8 @@
 # Statistical Analysis
 ## Exploring the Impact of Music on Brain Activity during Testing: An EEG-based Investigation
 
-> **Paper:** [INSERT DOI OR URL TO ACCEPTED PAPER HERE]
-> **Raw EEG data:** https://zenodo.org/records/17457949
+> **Paper:** [Exploring the Impact of Music on Brain Activity during Testing: An EEG-based Investigation](../Paper/Exploring%20the%20Impact%20of%20Music%20on%20Brain%20Activity%20during%20Testing%3A%20An%20EEG-based%20Investigation.pdf) — DOI to be assigned upon publication
+> **Raw EEG data:** https://doi.org/10.5281/zenodo.17457949
 
 ---
 
