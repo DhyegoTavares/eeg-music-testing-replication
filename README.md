@@ -19,7 +19,7 @@ In the `/prophet` directory, you will find the zip file `prophet_eeg_study.zip` 
 ## Music Links
 
 The study used the albums *Blue Note*, *Down Hill*, *Dune Days*, and *Palette* from **LofiGirl**.
-Due to copyright restrictions, the audio files cannot be redistributed here. Please access them via the following links:
+Due to copy[Exploring the Impact of Music on Brain Activity during Testing-An EEG based Investigation.pdf](../Downloads/Exploring%20the%20Impact%20of%20Music%20on%20Brain%20Activity%20during%20Testing-An%20EEG%20based%20Investigation.pdf)right restrictions, the audio files cannot be redistributed here. Please access them via the following links:
 
 * [Blue Note – Bandcamp](https://lofigirl.bandcamp.com/album/blue-note)
 * [Blue Note – YouTube](https://youtu.be/LhdZNzfoDIA?si=ummKWmJFRY1fswVd)
