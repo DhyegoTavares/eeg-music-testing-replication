@@ -2,6 +2,7 @@
 ## Exploring the Impact of Music on Brain Activity during Testing: An EEG-based Investigation
 
 > **Paper:** [Exploring the Impact of Music on Brain Activity during Testing: An EEG-based Investigation](Paper/Exploring%20the%20Impact%20of%20Music%20on%20Brain%20Activity%20during%20Testing%3A%20An%20EEG-based%20Investigation.pdf) — DOI to be assigned upon publication
+> 
 > **Raw EEG data:** https://doi.org/10.5281/zenodo.17457949
 
 This repository provides the **replication package**, **analysis scripts**, and **supplementary materials** for the paper.
@@ -43,7 +44,7 @@ The raw EEG recordings on Zenodo total approximately 1 GB. The processed data an
 
 ### Ethical and Legal Statements
 
-The EEG recordings were collected under an ethics protocol approved by the institutional review board. All participants provided written informed consent prior to data collection. Raw EEG recordings are not distributed in this repository to protect participant privacy; only anonymized, aggregated spectral power values are included in the statistical analysis dataset. The dataset is released under the MIT License (see `LICENSE`).
+The EEG recordings were collected under an ethics protocol approved by the institutional review board. All participants provided written informed consent prior to data collection. The study was approved by the Research Ethics Committee of School of Nursing, Federal University of Bahia - UFBA, in May 2024 (Approval No. 78645624.2.0000.5531). Raw EEG recordings are not distributed in this repository to protect participant privacy; only anonymized, aggregated spectral power values are included in the statistical analysis dataset. The dataset is released under the MIT License (see `LICENSE`).
 
 ## Statistical Analysis
 
