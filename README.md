@@ -3,7 +3,7 @@
 
 > **Paper:** [Exploring the Impact of Music on Brain Activity during Testing: An EEG-based Investigation](Paper/Exploring%20the%20Impact%20of%20Music%20on%20Brain%20Activity%20during%20Testing%3A%20An%20EEG-based%20Investigation.pdf) — DOI to be assigned upon publication
 > 
-> **Raw EEG data:** https://doi.org/10.5281/zenodo.17457949
+> **Raw EEG data:** https://doi.org/10.5281/zenodo.17457948
 
 This repository provides the **replication package**, **analysis scripts**, and **supplementary materials** for the paper.
 
@@ -19,7 +19,7 @@ In the `/prophet` directory, you will find the zip file `prophet_eeg_study.zip` 
 ## Music Links
 
 The study used the albums *Blue Note*, *Down Hill*, *Dune Days*, and *Palette* from **LofiGirl**.
-Due to copy[Exploring the Impact of Music on Brain Activity during Testing-An EEG based Investigation.pdf](../Downloads/Exploring%20the%20Impact%20of%20Music%20on%20Brain%20Activity%20during%20Testing-An%20EEG%20based%20Investigation.pdf)right restrictions, the audio files cannot be redistributed here. Please access them via the following links:
+Due to copyright restrictions, the audio files cannot be redistributed here. Please access them via the following links:
 
 * [Blue Note – Bandcamp](https://lofigirl.bandcamp.com/album/blue-note)
 * [Blue Note – YouTube](https://youtu.be/LhdZNzfoDIA?si=ummKWmJFRY1fswVd)
@@ -36,7 +36,7 @@ The `/forms` directory contains all **pre-experiment forms** used in the study.
 
 ## Raw EEG Data
 
-The raw EEG Data are available at: https://doi.org/10.5281/zenodo.17457949
+The raw EEG Data are available at: https://doi.org/10.5281/zenodo.17457948
 
 ### Storage Requirements
 
