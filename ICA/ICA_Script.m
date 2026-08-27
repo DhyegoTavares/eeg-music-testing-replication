@@ -2,10 +2,23 @@
 clear all;
 tic;  % Start timer
 
-% Define directories (customize these paths as needed)
-dataDir   = 'C:\path\to\edf_files\';    % Directory containing .edf files (include trailing slash)
-outputDir = fullfile(dataDir, 'SET\');  % Directory to save processed .set files
-chanLocs  = 'standard_1005.elc';        % Channel location file (in MATLAB path or full path)
+% Define directories (customize dataDir for your Windows environment)
+dataDir   = 'C:\path\to\edf_files';
+outputDir = fullfile(dataDir, 'SET');
+scriptDir = fileparts(mfilename('fullpath'));
+chanLocs  = fullfile(scriptDir, 'standard_1005.elc');
+
+if ~isfolder(dataDir)
+    error('Input directory not found: %s. Update dataDir before running the script.', dataDir);
+end
+
+if ~isfile(chanLocs)
+    error('Channel-location file not found: %s', chanLocs);
+end
+
+if exist('pop_biosig', 'file') ~= 2
+    error('pop_biosig was not found. Install or enable the EEGLAB BIOSIG plugin.');
+end
 
 % Create output folder if it does not exist
 if ~exist(outputDir, 'dir')
@@ -16,9 +29,15 @@ end
 edfFiles = dir(fullfile(dataDir, '*.edf'));
 nFiles   = numel(edfFiles);
 
+if nFiles == 0
+    error('No EDF files were found in: %s', dataDir);
+end
+
 % Loop through each EDF file
 for i = 1:nFiles
     filename = edfFiles(i).name;
+    [~, baseName] = fileparts(filename);
+    outputFilename = [baseName '.set'];
     fprintf('Processing %s\n', filename);
     
     % Load EDF file without importing events or annotations
@@ -55,7 +74,7 @@ for i = 1:nFiles
     
     % Save the dataset in EEGLAB .set format
     pop_saveset(EEG, ...
-        'filename', filename, ...
+        'filename', outputFilename, ...
         'filepath', outputDir ...
     );
 end

@@ -3,10 +3,17 @@ clear all;
 % Subject name (can be left empty for batch processing)
 subjectName = '';
 
-% Define input and output folders
-dataFolder   = 'path\to\your\set_files\';  % Update to your folder
-reportFolder = 'path\to\your\report\';    % Update to your folder
-mkdir(reportFolder);  % Create report folder if it does not exist
+% Define input and output folders (update for your Windows environment)
+dataFolder   = 'C:\path\to\your\set_files';
+reportFolder = 'C:\path\to\your\report';
+
+if ~isfolder(dataFolder)
+    error('Input directory not found: %s. Update dataFolder before running the script.', dataFolder);
+end
+
+if ~exist(reportFolder, 'dir')
+    mkdir(reportFolder);
+end
 
 % Frequency markers and overall range
 freqMarkers = [3 11 22 34];
@@ -41,11 +48,15 @@ regionElectrodes = {
 };
 
 %% Read .set files from folder
-setFiles = dir([dataFolder, subjectName, '*.set']); % List all .set files
+setFiles = dir(fullfile(dataFolder, [subjectName '*.set'])); % List all .set files
 numFiles = length(setFiles);                        % Number of files
 
+if numFiles == 0
+    error('No SET files were found in: %s', dataFolder);
+end
+
 %% Load first file to get channel names
-EEG = pop_loadset([dataFolder setFiles(1).name]);
+EEG = pop_loadset('filename', setFiles(1).name, 'filepath', dataFolder);
 numChannels = EEG.nbchan;
 
 % Standardize channel labels to uppercase
@@ -72,15 +83,16 @@ for fIdx = 1:numFiles
     disp(['PROCESSING FILE -------------------- ' setFiles(fIdx).name]);
     
     % Load dataset
-    EEG = pop_loadset([dataFolder setFiles(fIdx).name]);
+    EEG = pop_loadset('filename', setFiles(fIdx).name, 'filepath', dataFolder);
     
     % Remove unwanted channels
     EEG = pop_select(EEG,'nochannel',channelsToRemove);
     EEG = eeg_checkset(EEG);
     
     % Adjust epoch end if epochEnd == -1 (all epochs)
-    if epochEnd == -1
-        epochEnd = EEG.trials;
+    currentEpochEnd = epochEnd;
+    if currentEpochEnd == -1
+        currentEpochEnd = EEG.trials;
     end
     
     % Define epochs to reject outside desired range
@@ -88,8 +100,8 @@ for fIdx = 1:numFiles
     if epochStart > 1
         rejectEpochs = [1:epochStart-1];
     end
-    if epochEnd < EEG.trials
-        rejectEpochs = [rejectEpochs epochEnd+1:EEG.trials];
+    if currentEpochEnd < EEG.trials
+        rejectEpochs = [rejectEpochs currentEpochEnd+1:EEG.trials];
     end
     EEG = pop_rejepoch(EEG, rejectEpochs, 0);
     
@@ -111,7 +123,7 @@ end
 
 %% Generate individual-level CSV
 for rIdx = 1:length(rhythms)
-    fp = fopen([reportFolder rhythms{rIdx} '_IND.csv'], 'wt');
+    fp = fopen(fullfile(reportFolder, [rhythms{rIdx} '_IND.csv']), 'wt');
     fprintf(fp, 'Freq. Range[%g,%g]\n', freqStart(rIdx), freqEnd(rIdx));
     fprintf(fp,'Name;#Epochs;Power\n');
     
@@ -123,7 +135,7 @@ for rIdx = 1:length(rhythms)
     fclose(fp);
 
     %% Electrode-level CSV
-    fp = fopen([reportFolder rhythms{rIdx} '_ELE.csv'], 'wt');
+    fp = fopen(fullfile(reportFolder, [rhythms{rIdx} '_ELE.csv']), 'wt');
     fprintf(fp, 'Freq. Range[%g,%g]\n', freqStart(rIdx), freqEnd(rIdx));
     fprintf(fp,'Name;#Epochs');
     for c = 1:numChannels
@@ -141,7 +153,7 @@ for rIdx = 1:length(rhythms)
     fclose(fp);
     
     %% Region-level CSV
-    fp = fopen([reportFolder rhythms{rIdx} '_REG.csv'], 'wt');
+    fp = fopen(fullfile(reportFolder, [rhythms{rIdx} '_REG.csv']), 'wt');
     fprintf(fp, 'Freq. Range[%g,%g]\n', freqStart(rIdx), freqEnd(rIdx));
     fprintf(fp,'Name;#Epochs');
     for regIdx = 1:length(regions)

@@ -184,12 +184,12 @@ function pushbutton_Executar_Callback(hObject, eventdata, handles)
 set(handles.text_ready_busy,'String','Busy');
 handle_msgbox = msgbox('Processing');
 
-path = strcat(get(handles.edit_path,'String'),'\');
+path = get(handles.edit_path,'String');
 format=get(handles.FormatPnl,'SelectedObject');
 format=get(format,'String');
 
 
-epochs = strcat(path,'events.txt');
+epochs = fullfile(path, 'events.txt');
 
 EpochSize = str2double( get(handles.editEpochSize,'String') );
 upthresh= str2num( get(handles.editUpTrashold,'String') );    % upper threshold (µV)
@@ -199,12 +199,15 @@ higFreq= str2num( get(handles.hFreq,'String') );
 
 sampleRate = str2num( get(handles.edit_freq_amostragem,'String'));
 
-name=strcat(path,['*.' format]);
+name=fullfile(path, ['*.' format]);
 d=dir(name);   % load files
-folder = 'netlab\';
-mkdir(path, folder);
-path2 = strcat(path,folder);
-fpRe=fopen([strcat(path,folder)+"report"+date+".csv"],"wt");
+folder = 'netlab';
+path2 = fullfile(path, folder);
+if ~exist(path2, 'dir')
+    mkdir(path2);
+end
+fpRe=fopen(fullfile(path2, ['report' date '.csv']), 'wt');
+chanLocs = fullfile(fileparts(mfilename('fullpath')), 'standard-10-5-cap385.elp');
 fprintf(fpRe,"EpochSize=%g\n",EpochSize);
 fprintf(fpRe,"upthresh=%g\n",upthresh);
 fprintf(fpRe,"lowthresh=%g\n",lowthresh);
@@ -216,7 +219,7 @@ fprintf(fpRe,"File\tDeleted\tTotal\tRemaining\tTime\n");
 
 for j=1:length(d)
     
-    filename = strcat(path, d(j).name);
+    filename = fullfile(path, d(j).name);
     %% Load Data
     if(format(1)=='A')
         EEG = pop_loadbci( filename, sampleRate );
@@ -231,7 +234,7 @@ for j=1:length(d)
     disp(['========================>',d(j).name]);
     
     N = floor(EEG.pnts/(sampleRate*EpochSize ));
-    fid = fopen([path 'events.txt' ],'w');
+    fid = fopen(epochs, 'w');
     fprintf(fid,'type\tlatency\n');
     for q=1:N
         fprintf(fid,'%d\t%f\n',q,q*EpochSize);
@@ -240,7 +243,7 @@ for j=1:length(d)
     
    
     if(format(1)=='A' || format(1)=='E' )
-        EEG = pop_chanedit(EEG, 'lookup','standard-10-5-cap385.elp');
+        EEG = pop_chanedit(EEG, 'lookup', chanLocs);
     end
     % add any electrodes to exclude to this list
     EEG = pop_select( EEG,'nochannel',{'EMGd' 'EMGm' 'ECM' '�culo' 'FOTO' 'M1' 'M2' 'VEOG' 'HEOG' 'EMG' 'EKG' '1.F10' '1.F9' '2.F10' '2.F9' '1.T9' '1.T10' '2.T10' '2.T9'});
@@ -269,9 +272,12 @@ for j=1:length(d)
     
     %% save ascii data in a different folder
     
-    EEG = pop_saveset( EEG, 'filename',d(j).name,'filepath',path2);
+    [~, baseName] = fileparts(d(j).name);
+    setFilename = [baseName '.set'];
+    asciiFilename = fullfile(path2, [baseName '.asc']);
+    EEG = pop_saveset(EEG, 'filename', setFilename, 'filepath', path2);
     
-    pop_export(EEG,[path2 d(j).name(1:end-3) 'asc'],'transpose','on','time','off','precision',5);
+    pop_export(EEG, asciiFilename, 'transpose', 'on', 'time', 'off', 'precision', 5);
     
 end
 
