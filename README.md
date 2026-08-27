@@ -1,9 +1,9 @@
 # EEG_MUSIC_TESTING
 ## Exploring the Impact of Music on Brain Activity during Testing: An EEG-based Investigation
 
-> **Paper:** [Exploring the Impact of Music on Brain Activity during Testing: An EEG-based Investigation](Paper/Exploring%20the%20Impact%20of%20Music%20on%20Brain%20Activity%20during%20Testing%3A%20An%20EEG-based%20Investigation.pdf) — DOI to be assigned upon publication
+> **Paper:** [Exploring the Impact of Music on Brain Activity during Testing: An EEG-based Investigation](Paper/Paper.pdf) — DOI to be assigned upon publication
 > 
-> **Raw EEG data:** https://doi.org/10.5281/zenodo.17457948
+> **Raw EEG data:** https://doi.org/10.5281/zenodo.22119099
 
 This repository provides the **replication package**, **analysis scripts**, and **supplementary materials** for the paper.
 
@@ -36,7 +36,7 @@ The `/forms` directory contains all **pre-experiment forms** used in the study.
 
 ## Raw EEG Data
 
-The raw EEG Data are available at: https://doi.org/10.5281/zenodo.17457948
+The raw EEG Data are available at: https://doi.org/10.5281/zenodo.22119099
 
 ### Storage Requirements
 
